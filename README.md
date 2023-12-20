@@ -22,13 +22,23 @@ This README provides detailed information about the News Feed web application. T
 ## Introduction
 The News Feed app is a web-based platform that aggregates news from different sources via RSS feeds. It's built using HTML, CSS, and JavaScript, with a focus on providing an interactive and user-friendly interface for reading news.
 
+![mockup](doc/mockup.jpg)
+
 ## Features
 - **Dynamic News Tabs**: Tabs generated dynamically based on available RSS feeds.
+![feature-01](doc/feature-01.jpg)
 - **Weather Updates**: Real-time weather information based on user location.
+![feature-02](doc/feature-02.jpg)
 - **Dark/Light Mode**: Toggle between dark and light modes for comfortable reading.
+![feature-03](doc/feature-03.jpg) 
 - **Language Filters**: News can be filtered based on English or Spanish sources.
+![feature-04](doc/feature-04.jpg)
+![feature-05](doc/feature-05.jpg)
+![feature-06](doc/feature-06.jpg)
 - **Search Functionality**: Search through news items using keywords.
+![feature-07](doc/feature-07.jpg)
 - **Social Media Sharing**: Share news items on Twitter.
+![feature-08](doc/feature-08.jpg)
 
 ## User Stories
 1. **News Enthusiast**: Wants a central hub for reading various news feeds.
@@ -36,6 +46,10 @@ The News Feed app is a web-based platform that aggregates news from different so
 3. **Social Media User**: Shares interesting news articles on social media platforms.
 
 ## Design Elements
+![palette](doc/palette.jpg)
+![wire](doc/wireframe-01.jpg)
+![wire](doc/wireframe-02.jpg)
+![wire](doc/wireframe-03.jpg)
 - **Responsive Layout**: Ensures a seamless experience across different devices.
 - **Color Scheme**: Contrasting colors for dark and light modes to enhance readability.
 - **Interactive Components**: Dynamic tabs, search bar, and social media icons for engagement.
@@ -55,15 +69,59 @@ The News Feed app is a web-based platform that aggregates news from different so
 ## Code Snippets
 - **Toggle Dark/Light Mode**:
   ```javascript
-  const toggleMode = () => {
-    document.body.classList.toggle('dark-mode');
-  };
+  document.getElementById('toggleMode').addEventListener('change', function() {
+    if (this.checked) {
+        document.body.classList.add('dark-mode'); // Add dark mode class
+    } else {
+        document.body.classList.remove('dark-mode'); // Remove dark mode class
+    }
+  });
+
   ```
 - **Fetch RSS Feeds**:
   ```javascript
-  const fetchNews = async (source) => {
-    // Fetch and parse RSS feeds logic
-  };
+  function displayNewsItems(items, containerId) {
+    const newsFeedContainer = document.getElementById(containerId);
+    newsFeedContainer.innerHTML = ''; // Clear previous content
+
+    items.forEach(item => {
+        const col = document.createElement('div');
+        col.className = 'col-12 col-md-6 mb-4';
+
+        const newsItem = document.createElement('div');
+        newsItem.className = 'news-item';
+
+        // Title
+        const title = document.createElement('div');
+        title.className = 'news-title';
+        title.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+        newsItem.appendChild(title);
+
+        // Description
+        const description = document.createElement('div');
+        description.className = 'news-description';
+        description.innerHTML = item.description;
+        newsItem.appendChild(description);
+
+        // For the image
+        if(item.enclosure && item.enclosure.link) {
+        const image = document.createElement('img');
+        image.src = item.enclosure.link;
+        image.className = 'img-fluid';
+        image.setAttribute('aria-label', 'News Image'); // Added aria-label
+        newsItem.appendChild(image);
+        }
+
+        // Social Share Button
+        const shareButton = document.createElement('button');
+        shareButton.className = 'share-button';
+        shareButton.innerHTML = '<i class="fa-brands fa-twitter"></i> Share';
+        shareButton.setAttribute('aria-label', 'Share on Twitter'); // Added aria-label
+        shareButton.onclick = () => shareNews(item.link);
+        newsItem.appendChild(shareButton);
+
+        col.appendChild(newsItem);
+        newsFeedContainer.appendChild(col);
   ```
 
 ## Usability Testing
