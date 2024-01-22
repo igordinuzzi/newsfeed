@@ -1,6 +1,7 @@
 # News Feed Web Application 
 
-This README provides detailed information about the News Feed web application. The application offers a dynamic experience to explore various RSS news feeds, with features like a dark/light mode switch, language filters, weather updates, and social media sharing.
+This README provides detailed information about the News Feed web application. The application offers a dynamic experience to explore various RSS news feeds, with features like a dark/light mode switch, language filters, weather updates, and social media sharing. [Live page](https://igordinuzzi.github.io/newsfeed/)
+
 
 ## Table of Contents
 - [Introduction](#introduction)
