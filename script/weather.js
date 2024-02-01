@@ -1,5 +1,4 @@
 let isCelsius = true; // Default temperature unit
-const temp = Math.round(data.main.temp);
 
 document.addEventListener('DOMContentLoaded', () => {
     if (navigator.geolocation) {
@@ -21,7 +20,7 @@ function showWeather(position) {
         .then(response => response.json())
         .then(data => {
             const weather = data.weather[0].main;
-            const temp = data.main.temp;
+            const temp = Math.round(data.main.temp); // Round the temperature here
             const unitSymbol = isCelsius ? '°C' : '°F';
             const icon = getWeatherIcon(weather);
             document.getElementById('weatherInfo').innerHTML = `${icon} Weather: ${weather}, Temp: ${temp}${unitSymbol}`;
@@ -30,6 +29,7 @@ function showWeather(position) {
             document.getElementById('weatherInfo').textContent = 'Unable to retrieve weather data.';
         });
 }
+
 
 function toggleTempUnit() {
     isCelsius = !isCelsius; // Toggle the temperature unit
