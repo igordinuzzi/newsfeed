@@ -1,4 +1,5 @@
 let isCelsius = true; // Default temperature unit
+const temp = Math.round(data.main.temp);
 
 document.addEventListener('DOMContentLoaded', () => {
     if (navigator.geolocation) {
