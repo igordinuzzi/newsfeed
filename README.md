@@ -23,7 +23,7 @@ This README provides detailed information about the News Feed web application. T
 ## Introduction
 The News Feed app is a web-based platform that aggregates news from different sources via RSS feeds. It's built using HTML, CSS, and JavaScript, with a focus on providing an interactive and user-friendly interface for reading news.
 
-![mockup](doc/mockup.jpg)
+![mockup](doc/mockup.png)
 
 ## Features
 - **Dynamic News Tabs**: Tabs generated dynamically based on available RSS feeds.
